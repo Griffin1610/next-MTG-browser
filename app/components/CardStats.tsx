@@ -1,4 +1,3 @@
-'use client'
 import { Card } from "@/app/types/card";
 
 export default function CardStats({ cardData } : { cardData: Card }) {

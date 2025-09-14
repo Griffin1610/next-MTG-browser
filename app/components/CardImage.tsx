@@ -1,4 +1,3 @@
-'use client';
 import { Card } from "@/app/types/card";
 
 export default function CardImage( {cardData} : { cardData: Card }) {
