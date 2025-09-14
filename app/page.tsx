@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react';
 import SearchBar from "./components/SearchBar";
+import CardStats from "./components/CardStats";
+import CardImage from './components/CardImage';
 
 
 
@@ -8,15 +10,16 @@ export default function Page() {
     const [cardData, setCardData] = useState<any>(null)
     return (
         <main>
-            {cardData && (
-            <div>
-                <h2>{cardData.name}</h2>
-                <img src={cardData.image_uris.normal} alt="card"/>
-            </div>
-            )}
             <div>
                 <SearchBar onSearch={searchCard}/>
             </div>
+            <div>
+                <CardImage cardData={cardData}/>
+            </div>
+            <div>
+                <CardStats cardData={cardData}/>
+            </div>
+
         </main>
     )
 
