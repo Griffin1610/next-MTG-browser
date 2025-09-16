@@ -6,10 +6,10 @@ export default function NavigationBar() {
             <Link href = "/">
                 <button>Home</button>
             </Link>
-            <Link href = "/collection">
+            <Link href = "/collectionPage">
                 <button>Colletion</button>
             </Link>
-            <Link href = "/deck">
+            <Link href = "/deckPage">
                 <button>Deck</button>
             </Link>
         </div>

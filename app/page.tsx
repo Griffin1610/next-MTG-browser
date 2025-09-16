@@ -10,6 +10,7 @@ export default function Page() {
     const [cardData, setCardData] = useState<any>(null)
     return (
         <main>
+            <h1>Home Page</h1>
             <div>
                 <SearchBar onSearch={searchCard}/>
             </div>
@@ -24,7 +25,7 @@ export default function Page() {
     )
 
 async function searchCard(userQuery: string) {
-    const response = await fetch(`/api/?name=${userQuery}`);
+    const response = await fetch(`/api/card/?name=${userQuery}`);
     const data = await response.json();
     setCardData(data);
     console.log(data);

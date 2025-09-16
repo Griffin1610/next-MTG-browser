@@ -4,10 +4,12 @@ export default function CardImage( {cardData} : { cardData: Card }) {
 
     return (
     <div>
-        {cardData && (
+        {cardData ? (
             <div>
-                <img src={cardData.image_uris.small} alt={cardData.name}/>
+                <img src={cardData.image_uris?.small} alt={cardData.name}/>
             </div>
+        ) : (
+            <p>no image for this card</p>
         )}
     </div>
     )
