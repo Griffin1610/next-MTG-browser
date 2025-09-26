@@ -3,28 +3,25 @@ import { useEffect, useState } from 'react';
 import { Card } from "@/app/types/card";
 import CardImage from './CardImage';
 
-
-//props
-type CollectionProps = {
-  setCode: string;
-};
-
-
-export default function Collection( { setCode }: CollectionProps ) {
+export default function Collection({ setCode }: {setCode: string}) {
     const [cards, setCards] = useState<Card[]>([]);
 
     useEffect(() => {
-        async function fetchSet() {
-            if (!setCode) return;
+        if (!setCode) return;
+        
+        (async () => {
+            try {
+                const response = await fetch(`api/collection/?set=${setCode}`);
+                const data = await response.json();
 
-            const response = await fetch(`api/collection/?set=${setCode}`);
-            const data = await response.json();
-
-            if (data.data) {
-                setCards(data.data);
+                if (data.data) {
+                    setCards(data.data);
+                }
             }
-        }
-        fetchSet();
+            catch(error) {
+                console.error("issue retreiving card collection");
+            }
+        })();
     }, [setCode]);
 
     return (

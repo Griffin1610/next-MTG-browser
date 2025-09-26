@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-    const response = await fetch(`https://api.scryfall.com/sets`);
+    try {
+        const response = await fetch(`https://api.scryfall.com/sets`);
 
-    if(!response.ok) {
-        return NextResponse.json( {error: "failed to fetch sets"}, {status: 400 })
+        if (!response.ok) {
+            return NextResponse.json( {error: "failed to create set dropdown"}, {status: 400 })
+        }   
+        
+        const sets = await response.json();
+        return NextResponse.json(sets);
     }
-
-    const data = await response.json();
-    return NextResponse.json(data);
+    catch (error) {
+        return NextResponse.json({ error: "internal API error" }, { status: 500 })
+    }
 }
+    

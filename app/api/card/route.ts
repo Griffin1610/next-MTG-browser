@@ -8,12 +8,17 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "missing card name" }, {status: 400});
     }
 
-    const response = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${name}`);
+    try {
+        const response = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${name}`);
 
-    if (!response.ok) {
-        return NextResponse.json({ error: "card not found"}, { status: 400});
+        if (!response.ok) {
+            return NextResponse.json({ error: "card not found"}, { status: 400});
+        }
+
+        const card = await response.json();
+        return NextResponse.json(card);
     }
-
-    const data = await response.json();
-    return NextResponse.json(data);
+    catch (error) {
+        return NextResponse.json({ error: "internal API error" }, { status: 500 })
+    }
 }

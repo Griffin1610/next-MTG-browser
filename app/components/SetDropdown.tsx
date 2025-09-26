@@ -1,42 +1,34 @@
 'use client';
 import { useState, useEffect } from "react";
+import { MTGSet } from "@/app/types/mtgSet";
 
-type SetDropdownProps = {
-  onSelect: (setCode: string) => void;
-};
+export default function SetDropdown({ onSelect } : { onSelect : (setCode : string) => void }) {
+    const [sets, setSets] = useState<MTGSet[]>([]);
+    const [selected, setSelected] = useState("");
 
-type MTGSet = {
-  code: string;
-  name: string;
-};
+    useEffect(() => {
+        async function fetchSets() {
+            const response = await fetch("/api/set");
+            const data = await response.json();
+            setSets(data.data);
+        }
+        fetchSets();
+    }, []);
 
-export default function SetDropdown({ onSelect }: SetDropdownProps) {
-  const [sets, setSets] = useState<MTGSet[]>([]);
-  const [selected, setSelected] = useState("");
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        setSelected(value);
+        onSelect(value);
+    };
 
-  useEffect(() => {
-    async function fetchSets() {
-      const response = await fetch("/api/set");
-      const data = await response.json();
-      setSets(data.data);
-    }
-    fetchSets();
-  }, []);
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelected(value);
-    onSelect(value);
-  };
-
-  return (
-    <select value={selected} onChange={handleChange}>
-      <option value="">Select a set</option>
-      {sets.map((set) => (
-        <option key={set.code} value={set.code}>
-          {set.name} ({set.code.toUpperCase()})
-        </option>
-      ))}
-    </select>
-  );
+    return (
+        <select value={selected} onChange={handleChange}>
+            <option value="">Select a set</option>
+            {sets.map((set) => (
+                <option key={set.code} value={set.code}>
+                {set.name} ({set.code.toUpperCase()})
+                </option>
+            ))}
+        </select>
+    );
 }

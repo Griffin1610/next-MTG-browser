@@ -7,7 +7,7 @@ export default function NavigationBar() {
                 <button>Home</button>
             </Link>
             <Link href = "/collectionPage">
-                <button>Colletion</button>
+                <button>Collection</button>
             </Link>
             <Link href = "/deckPage">
                 <button>Deck</button>
