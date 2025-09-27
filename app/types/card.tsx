@@ -6,5 +6,5 @@ export type Card = {
     cmc: number;
     colors: string[];
     image_uris: imageUris;
-    card_faces?: { image_uris: { small: string } }[];
+    card_faces?: { image_uris: { small: string , large: string } }[];
 };
