@@ -11,7 +11,7 @@ export default function CardImage( {cardData} : { cardData: Card }) {
             onMouseEnter = {onMouseEnter}
             onMouseLeave = {onMouseLeave}
         >
-            {cardData ? (
+            {cardData && 
                 <div>
                     {isHovering ? (
                         <img src={cardData.image_uris?.large} alt={cardData.name} />
@@ -19,9 +19,7 @@ export default function CardImage( {cardData} : { cardData: Card }) {
                         <img src={cardData.image_uris?.small} alt={cardData.name} />
                     )}
                 </div>
-            ) : (
-                <p>no image for this card</p>
-            )}
+            }
         </div>
     )
 }
