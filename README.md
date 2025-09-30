@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Welcome to the MTG Browser, a next.js web development project powered by Next.JS, React, TypeScript and Tailwind CSS.
 
 ## Getting Started
 
-First, run the development server:
+First, install Node on your system if you do not have it already
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+https://nodejs.org/en
+```
+confirm installation with:
+```bash
+node -v
 ```
 
+Next, clone the repository
+```bash
+git clone https://github.com/Griffin1610/next-MTG-browser.git
+```
+
+navigate to the project directory, and install the dependecies using node
+```bash
+npm install
+```
+This will install all dependecies needed for the project that you do not have. (react, tailwind, etc)
+
+Finally, Start the server and naviate to the localhost
+```bash
+npm run dev
+```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Learning about React and Next
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To catch up to speed on how the frameworks and libraries work, check out the following documentation
+and videos.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
+- [JavaScript Documentation](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Adding_interactivity) - learn about JavaScript
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/) - learn about TypeScript
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [React Documentation](https://react.dev/learn) - learn about the React library
+- [Youtube: Next.js](https://www.youtube.com/watch?v=vwSlYG7hFk0) - basics of Next.js
+- [Youtube: React](https://www.youtube.com/watch?v=SqcY0GlETPk&t=163s) - basics of React
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We have set in place a strict ruleset in GitHub in order to keep the project clean and stable
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+**BRANCHES**
+
+- **main** → stable, production-ready code. Will be updated when we like the current dev build
+
+- **dev** → integration branch for ongoing work. All feature branches will be merged into dev.
+
+There are GitHub rules in place to block pushes directly to both development and main.
+All pushes must be made to a feature branch, with the corresponding branch tags for clarity:
+
+- **feature/<-branch-name** → use a feature branch naming scheme when developing or reworking a new feature
+- **bug/branch-name** → use a bug branch naming scheme when fixing an known bug
+- **hotfix/branch-name** → use a hotfix branch naming scheme when there is an issue with the build that needs immediate attention
+
+All pull requests must be approved by two people before they will be able to be marked as complete and merged into the development in GitHub
+
+Please communicate with groupmates often to avoid merge conflicts and work on the same issues, communicate with the entire group when a pull request is ready for review.
