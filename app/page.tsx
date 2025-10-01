@@ -10,15 +10,17 @@ export default function Page() {
     const [cardData, setCardData] = useState<any>(null)
     return (
         <main>
-            <h1>Home Page</h1>
-            <div>
+            <div className="flex py-10">
+                <h3 className="font-bold font-serif text-xl text-white">Search for a card: </h3>
                 <SearchBar onSearch={searchCard}/>
             </div>
-            <div>
-                <CardImage cardData={cardData}/>
-            </div>
-            <div>
-                <CardStats cardData={cardData}/>
+            <div className="flex space-x-70">
+                <div className="bg-stone-800">
+                    <CardStats cardData={cardData}/>
+                </div>
+                <div>
+                    <CardImage cardData={cardData}/>
+                </div>
             </div>
 
         </main>
