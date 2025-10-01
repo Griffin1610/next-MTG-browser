@@ -7,10 +7,10 @@ export default function NavigationBar() {
                 <button>Home</button>
             </Link>
             <Link href = "/collectionPage">
-                <button>Collection</button>
+                <button>Collections</button>
             </Link>
-            <Link href = "/deckPage">
-                <button>Deck</button>
+            <Link href = "/draftPage">
+                <button>Draft</button>
             </Link>
         </div>
     )

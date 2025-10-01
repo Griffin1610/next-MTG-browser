@@ -14,7 +14,7 @@ export default function CardImage( {cardData} : { cardData: Card }) {
             {cardData && 
                 <div>
                     {isHovering ? (
-                        <img src={cardData.image_uris?.large} alt={cardData.name} />
+                        <img src={cardData.image_uris?.normal} alt={cardData.name}  className="w-xs"/>
                     ) : (
                         <img src={cardData.image_uris?.small} alt={cardData.name} />
                     )}
