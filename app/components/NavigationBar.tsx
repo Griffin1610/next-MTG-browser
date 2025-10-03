@@ -8,6 +8,9 @@ export default function NavigationBar() {
                 <Link href = "/">
                     <button className=" hover:bg-stone-900 h-20 w-25">Home</button>
                 </Link>
+                <Link href = "/searchPage">
+                    <button className=" hover:bg-stone-900 h-20 w-25">Search</button>
+                </Link>
                 <Link href = "/collectionPage">
                     <button className=" hover:bg-stone-900 h-20 w-25">Collections</button>
                 </Link>

@@ -28,10 +28,12 @@ export default function Collection({ setCode }: {setCode: string}) {
     <>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 200px)", gap: "1rem", marginTop: "1rem" }}>
                 {cards.map((card) => (
-                    <div key={card.id}>
-                        <CardImage cardData={card} />
-                        <p>{card.name}</p>
-                    </div>
+                    card.image_uris ? (
+                        <div key={card.id}>
+                            <CardImage cardData={card} />
+                            <p>{card.name}</p>
+                        </div>
+                    ) : null
                 ))}
         </div>
     </>

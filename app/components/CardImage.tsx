@@ -1,4 +1,4 @@
-import { Card } from "@/app/types/card";
+import { Card } from "../types/card";
 import { useState } from 'react';
 
 export default function CardImage( {cardData} : { cardData: Card }) {

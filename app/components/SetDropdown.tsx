@@ -22,7 +22,7 @@ export default function SetDropdown({ onSelect } : { onSelect : (setCode : strin
     };
 
     return (
-        <select value={selected} onChange={handleChange}>
+        <select value={selected} onChange={handleChange} className="text-stone0-950 border border-stone-950 rounded-md p-2 bg-stone-800">
             <option value="">Select a set</option>
             {sets.map((set) => (
                 <option key={set.code} value={set.code}>
