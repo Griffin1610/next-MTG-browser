@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Card } from "@/app/types/card";
 import CardImage from './CardImage';
 
-export default function Collection({ setCode }: {setCode: string}) {
+export default function Set({ setCode }: {setCode: string}) {
     const [cards, setCards] = useState<Card[]>([]);
 
     useEffect(() => {
