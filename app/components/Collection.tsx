@@ -11,7 +11,7 @@ export default function Collection({ setCode }: {setCode: string}) {
         
         (async () => {
             try {
-                const response = await fetch(`api/collection/?set=${setCode}`);
+                const response = await fetch(`/api/collection/?set=${setCode}`);
                 const data = await response.json();
 
                 if (data.data) {
@@ -30,7 +30,7 @@ export default function Collection({ setCode }: {setCode: string}) {
                 {cards.map((card) => (
                     card.image_uris ? (
                         <div key={card.id}>
-                            <CardImage cardData={card} />
+                            <CardImage isSearchPage={false} cardData={card} currentCard={0} />
                             <p>{card.name}</p>
                         </div>
                     ) : null

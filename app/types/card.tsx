@@ -7,4 +7,10 @@ export type Card = {
     colors: string[];
     image_uris: imageUris;
     card_faces?: { image_uris: { small: string , large: string } }[];
+    type_line: string;
+    set_name: string;
+    prices: { usd: string };
+    foil: boolean;
+    artist: string;
+    data: any;
 };
