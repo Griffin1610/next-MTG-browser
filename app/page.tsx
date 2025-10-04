@@ -2,15 +2,13 @@
 
 export default function Page() {
     return (
-<<<<<<< HEAD
     <>
         <div className="text-center">
-            <img src="/mtg-logo.png" alt="MTG Logo" className="w-100 mx-auto"/>
+            <img src="/mtg-logo.png" alt="MTG Logo" className="w-100 mx-auto mt-15"/>
         </div>
-=======
->>>>>>> 7583bd7367c61dfb649ad24a3d4bddd93603d48c
-        <div className="text-center">
+        <div className="text-center mt-10">
             <p>home page info</p>
         </div>
+    </>
     )
 }

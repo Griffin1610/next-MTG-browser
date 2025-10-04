@@ -1,7 +1,7 @@
 import { Card } from "@/app/types/card";
 
 export default function CardStats({ cardData, currentCard } : { cardData: Card, currentCard: number  }) {
-    let displayColors = cardData.data[currentCard]?.colors;
+    let displayColors = cardData?.data?.[currentCard]?.colors;
 
     if (displayColors?.length > 1) {
         displayColors = ["Multicolor"];

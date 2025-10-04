@@ -20,9 +20,6 @@ export default function NavigationBar() {
             <div className="absolute left-1/2 -translate-x-1/2 flex items-center">
                 <p className="text-3xl font-serif">MTG Browser</p>
             </div>
-            <div>
-                <img className="w-25 absolute right-5 top-7" src="/mtg-logo.png" alt="MTG Logo"/>
-            </div>
         </div>
     )
 }

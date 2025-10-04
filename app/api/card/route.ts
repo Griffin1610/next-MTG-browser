@@ -9,7 +9,7 @@ export async function GET(request: Request) {
     }
 
     try {
-        const response = await fetch(`https://api.scryfall.com/cards/search?q=!${name}&unique=prints`);
+        const response = await fetch(`https://api.scryfall.com/cards/search?q=!%22${encodeURIComponent(name)}%22&unique=prints`);
 
         if (!response.ok) {
             return NextResponse.json({ error: "card not found"}, { status: 400});
