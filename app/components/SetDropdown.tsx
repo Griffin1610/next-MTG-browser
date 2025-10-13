@@ -10,7 +10,9 @@ export default function SetDropdown({ onSelect } : { onSelect : (setCode : strin
         async function fetchSets() {
             const response = await fetch("/api/set");
             const data = await response.json();
-            setSets(data.data);
+            const filtered = data.data.filter(
+            (set: MTGSet) => set.set_type === "core" || set.set_type === "expansion");
+            setSets(filtered);
         }
         fetchSets();
     }, []);
@@ -22,7 +24,7 @@ export default function SetDropdown({ onSelect } : { onSelect : (setCode : strin
     };
 
     return (
-        <select value={selected} onChange={handleChange} className="text-stone-950 border border-stone-950 rounded-md p-2 bg-stone-800">
+        <select value={selected} onChange={handleChange} className="text-stone-950 border border-stone-950 rounded-md p-2 bg-stone-800 w-80">
             <option value="">Select a set</option>
             {sets.map((set) => (
                 <option key={set.code} value={set.code}>
