@@ -1,5 +1,7 @@
 'use client';
 import SetDropdown from "../components/SetDropdown";
+import Draft from "../components/Draft";
+
 import { useState } from "react";
 
 export default function Page() {
@@ -9,12 +11,11 @@ export default function Page() {
     return (
     <div className ="flex pt-5">
         <div className="ps-20">
-            <h1>Begin a Draft!</h1>
             <SetDropdown onSelect={setChosenSet}></SetDropdown>
             {chosenSet ? (
-                <p>{chosenSet}</p>
+                <Draft setName={chosenSet} />
             ) : (
-                <p>select a set to begin</p>
+                <p>select a set to begin a draft</p>
             )}
         </div>
         <div className="ps-90">
