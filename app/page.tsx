@@ -18,6 +18,9 @@ export default function Page() {
                 <Link href="/setPage"><p className="underline">View All Sets</p></Link>
                 <Link href="/draftPage"><p className="underline">Simulate Drafts</p></Link>
             </div>
+            <footer className="fixed bottom-0 right-0 bg-stone-950 text-stone-200 text-right p-2">
+                <p className="text-xs">A Project by Griffin Polly. 2025</p>
+            </footer>
         </div>
     </>
     )
