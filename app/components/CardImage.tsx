@@ -7,8 +7,9 @@ export default function CardImage( {cardData, isSearchPage, currentCard} : { car
 
     const imageSrc = isSearchPage
         ? (cardData?.data?.[currentCard]?.image_uris?.normal)
-        : (isHovering ? cardData?.data?.[currentCard]?.image_uris?.large : cardData?.data?.[currentCard]?.image_uris?.small);
-
+        //: (isHovering ? cardData?.data?.[currentCard]?.image_uris?.large : cardData?.data?.[currentCard]?.image_uris?.small);
+        : (cardData?.data?.[currentCard]?.image_uris?.small)
+        //removing hover effect for now, as it is buggy.
     return (
         <div
             onMouseEnter={onMouseEnter}

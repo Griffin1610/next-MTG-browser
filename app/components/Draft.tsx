@@ -153,7 +153,7 @@ export default function Draft({ setName }: { setName: string }) {
                 
                 <div style={{ 
                     display: "grid", 
-                    gridTemplateColumns: "repeat(5, 1fr)", 
+                    gridTemplateColumns: "repeat(8, 1fr)", 
                     gap: "1rem", 
                     marginTop: "1rem", 
                     width: "100%", 
@@ -163,7 +163,6 @@ export default function Draft({ setName }: { setName: string }) {
                         card.image_uris ? (
                             <div 
                                 key={`${card.id}-${index}`}
-                                className="hover:opacity-80 transition-opacity"
                             >
                                 <CardImage 
                                     isSearchPage={false}

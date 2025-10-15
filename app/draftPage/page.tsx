@@ -6,21 +6,27 @@ import { useState } from "react";
 
 export default function Page() {
     const [chosenSet, setChosenSet] = useState("");
-    
-    const draftDeck = [];
     return (
-    <div className ="flex pt-5">
-        <div className="ps-20">
-            <SetDropdown onSelect={setChosenSet}></SetDropdown>
-            {chosenSet ? (
-                <Draft setName={chosenSet} />
-            ) : (
-                <p>select a set to begin a draft</p>
-            )}
-        </div>
-        <div className="ps-90">
-            <h1>Current Draft Deck</h1>
-        </div>
-    </div>
-    )
+    <>
+        {!chosenSet && (
+            <div className="mt-20 flex flex-col items-center">
+                <p className="font-bold font-serif text-2xl text-white">Select a set to begin a draft</p>
+                <div className="mt-10 flex justify-center">
+                    <SetDropdown onSelect={setChosenSet} />
+                </div>
+            </div>
+        )}
+
+        {chosenSet && (
+            <>
+                <div className="mt-10 flex justify-center">
+                    <SetDropdown onSelect={setChosenSet} />
+                </div>
+                <div className="mt-15 flex flex-col items-center">
+                    <Draft setName={chosenSet} />
+                </div>
+            </>
+        )}
+    </>
+);
 }
