@@ -77,8 +77,17 @@ export default function Set({ setCode }: {setCode: string}) {
                     <div key={card.id}>
                         <CardImage 
                             isSearchPage={false}
-                            cardData={{ data: [card] }}
-                            currentCard={0} />
+                            cardData={{
+                                data: [{
+                                    ...card, 
+                                    colors: card.colors ?? [], 
+                                    image_uris: card.image_uris!,
+                                    prices: { usd: card.prices?.usd ?? "0" },
+                                }], 
+                                    total_cards: 1
+                            }}
+                            currentCard={0} 
+                        />
                         <p className="text-white text-xs text-center">{card.name}</p>
                     </div>
                 ) : null

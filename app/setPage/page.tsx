@@ -8,14 +8,16 @@ export default function Page() {
 
     return (
         <>
+            <div className="mt-20 flex flex-col items-center">
+                {!chosenSet && 
+                    <p className="font-bold font-serif text-2xl text-white">Select a set to view cards</p>
+                    }
+            </div>
             <div className="mt-15 flex justify-center">
                 <SetDropdown onSelect={setChosenSet} />
             </div>
             <div className="mt-5 flex flex-col items-center">
                 <Set setCode={chosenSet} />
-                {!chosenSet && 
-                <p className="font-bold font-serif text-2xl text-white">Select a set to view cards</p>
-                }
             </div>
         </>
     );

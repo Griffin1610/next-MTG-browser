@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 
-let setsCache: any = null;
+type ScryfallSet = {
+  code: string;
+  name: string;
+};
+
+let setsCache: ScryfallSet[] | null = null;
 let cacheTimestamp: number = 0;
 const CACHE_DURATION = 24 * 60 * 60 * 1000;
 

@@ -166,7 +166,7 @@ export default function Draft({ setName }: { setName: string }) {
                             >
                                 <CardImage 
                                     isSearchPage={false}
-                                    cardData={{ data: [card] }}
+                                    cardData={{ data: [card], total_cards: 1 }}
                                     currentCard={0} 
                                 />
                                 <p className="text-white text-xs text-center">{card.name}</p>
@@ -206,7 +206,7 @@ export default function Draft({ setName }: { setName: string }) {
                         >
                             <CardImage 
                                 isSearchPage={false}
-                                cardData={{ data: [card] }}
+                                cardData={{ data: [card], total_cards: 1 }}
                                 currentCard={0} 
                             />
                             <p className="text-white text-xs text-center">{card.name}</p>

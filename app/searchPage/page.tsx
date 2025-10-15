@@ -1,15 +1,20 @@
 'use client'
 import { useState } from 'react';
+import { Card } from "@/app/types/card";
 import SearchBar from "../components/SearchBar";
 import CardStats from "../components/CardStats";
 import CardImage from '../components/CardImage';
 
-
+type CardData = {
+  total_cards: number;
+  data: Card[];
+  error?: string;
+};
 
 export default function Page() {
-    const [cardData, setCardData] = useState<any>(null)
+    const [cardData, setCardData] = useState<CardData | null>(null);
     const [currentCard, setCurrentCard] = useState(0);
-    let totalCards = cardData?.total_cards || 0;
+    const totalCards = cardData?.total_cards || 0;
 
     async function searchCard(userQuery: string) {
         const response = await fetch(`/api/card/?name=${encodeURIComponent(userQuery)}`);
@@ -28,7 +33,7 @@ export default function Page() {
             <div className="flex justify-center px-10 items-start relative z-0">
                 {cardData && !cardData.error &&
                 <div className="flex-none w-1/5 bg-stone-800 p-5 rounded-lg transform -translate-x-10 mt-25">
-                    <CardStats cardData={cardData} currentCard={currentCard}/>
+                    <CardStats cardData={cardData?.data[currentCard]}/>
                 </div>
                 }
                 {cardData?.error && 

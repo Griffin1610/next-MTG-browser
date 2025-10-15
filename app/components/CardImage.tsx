@@ -1,15 +1,21 @@
 import { useState } from 'react';
+import { Card } from "@/app/types/card";
 
-export default function CardImage( {cardData, isSearchPage, currentCard} : { cardData: any, isSearchPage: boolean, currentCard: number  } ) {
+type CardData = {
+    total_cards: number;
+    data: Card[];
+    error?: string;
+};
+
+export default function CardImage( {cardData, isSearchPage, currentCard} : { cardData: CardData | null, isSearchPage: boolean, currentCard: number } ) {
     const [isHovering, setIsHovering] = useState(false);
     const onMouseEnter = () => setIsHovering(true);
     const onMouseLeave = () => setIsHovering(false);
 
     const imageSrc = isSearchPage
-        ? (cardData?.data?.[currentCard]?.image_uris?.normal)
-        //: (isHovering ? cardData?.data?.[currentCard]?.image_uris?.large : cardData?.data?.[currentCard]?.image_uris?.small);
-        : (cardData?.data?.[currentCard]?.image_uris?.small)
-        //removing hover effect for now, as it is buggy.
+        ? cardData?.data?.[currentCard]?.image_uris?.normal
+        : cardData?.data?.[currentCard]?.image_uris?.small
+
     return (
         <div
             onMouseEnter={onMouseEnter}
