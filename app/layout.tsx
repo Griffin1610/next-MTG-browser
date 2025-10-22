@@ -1,4 +1,4 @@
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next"
 import NavigationBar from './components/NavigationBar';
 import './globals.css';
 
@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main>
                 <NavigationBar></NavigationBar>
                 {children}
-                <SpeedInsights/>
+                <Analytics/>
             </main>
         </body>
     </html>
