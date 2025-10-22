@@ -30,9 +30,9 @@ export default function Page() {
                 <div className="mt-15"></div>
                 <SearchBar onSearch={searchCard}/>
             </div>
-            <div className="flex justify-center px-10 items-start relative z-0">
+            <div className="flex justify-center px-10 items-start relative z-0 max-w-[1400px] mx-auto w-full">
                 {cardData && !cardData.error &&
-                <div className="flex-none w-1/5 bg-stone-800 p-5 rounded-lg transform -translate-x-10 mt-30">
+                <div className="flex-none w-[20%] min-w-[200px] bg-stone-800 p-5 rounded-lg transform -translate-x-10 mt-30">
                     <CardStats cardData={cardData?.data[currentCard]}/>
                 </div>
                 }
@@ -41,18 +41,18 @@ export default function Page() {
                         <h3 className="font-bold font-serif text-xl text-white ml-170">Card not found, please try again</h3>
                     </div>
                 }
-                <div className="w-16"/>
-                <div className="flex-none w-1/3 flex flex-col items-center justify-center translate-x-10 -mt-20">
+                <div className="w-16 flex-shrink-0"/>
+                <div className="flex-none w-[33%] min-w-[300px] flex flex-col items-center justify-center translate-x-10 -mt-10">
                     <CardImage  isSearchPage={true} cardData={cardData} currentCard={currentCard} />
-                        <div className="flex items-center -mt-22">
+                        <div className="flex items-center -mt-22 justify-center">
                             {cardData && !cardData.error &&
                             <>
-                                <button className=" bg-red-600 h-6 mb-15 px-2 rounded-md text-white hover:bg-red-700 -mt-5"
+                                <button className="bg-red-600 h-6 mb-15 px-2 rounded-md text-white hover:bg-red-700 -mt-5 whitespace-nowrap flex-shrink-0"
                                     onClick={() => setCurrentCard(prev => prev === 0 ? cardData?.data?.length - 1 : prev - 1)}>
                                         Back
                                 </button>
-                                <h3 className="ml-10 -mt-10 text-large text-white">{currentCard + 1}/{totalCards}</h3>
-                                <button className="ml-10 bg-green-600 h-6 mb-15 px-2 rounded-md text-white hover:bg-green-700 -mt-5"
+                                <h3 className="ml-10 -mt-10 text-large text-white whitespace-nowrap flex-shrink-0">{currentCard + 1}/{totalCards}</h3>
+                                <button className="ml-10 bg-green-600 h-6 mb-15 px-2 rounded-md text-white hover:bg-green-700 -mt-5 whitespace-nowrap flex-shrink-0"
                                     onClick={() => setCurrentCard(prev => prev === cardData?.data?.length - 1 ? 0 : prev + 1)}>
                                         Next
                                 </button>
