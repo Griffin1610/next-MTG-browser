@@ -11,7 +11,6 @@ export default function SearchBar({ onSearch } : { onSearch: (q: string) => void
     const [isLoading, setIsLoading] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const abortControllerRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
@@ -138,10 +137,11 @@ export default function SearchBar({ onSearch } : { onSearch: (q: string) => void
                                     setSuggestions(topCards);
                                     setIsOpen(topCards.length > 0);
                                     setIsLoading(false);
-                                } catch (error: any) {
-                                    if (error.name === 'AbortError') {
-                                        return;
-                                    }
+                                    } catch (error: unknown) {
+                                        if (error instanceof Error) {
+                                            if (error.name === 'AbortError') return;
+                                            console.error(error.message);
+                                        }
                                     setSuggestions([]);
                                     setIsOpen(false);
                                     setIsLoading(false);
