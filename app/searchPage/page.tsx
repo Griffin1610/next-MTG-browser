@@ -32,17 +32,17 @@ export default function Page() {
             </div>
             <div className="flex justify-center px-10 items-start relative z-0">
                 {cardData && !cardData.error &&
-                <div className="flex-none w-1/5 bg-stone-800 p-5 rounded-lg transform -translate-x-10 mt-25">
+                <div className="flex-none w-1/5 bg-stone-800 p-5 rounded-lg transform -translate-x-10 mt-30">
                     <CardStats cardData={cardData?.data[currentCard]}/>
                 </div>
                 }
                 {cardData?.error && 
                     <div className="mt-25">
-                        <h3 className="font-bold font-serif text-xl text-white ml-160">Card not found, please try again</h3>
+                        <h3 className="font-bold font-serif text-xl text-white ml-170">Card not found, please try again</h3>
                     </div>
                 }
                 <div className="w-16"/>
-                <div className="flex-none w-1/3 flex flex-col items-center justify-center translate-x-10 -mt-30">
+                <div className="flex-none w-1/3 flex flex-col items-center justify-center translate-x-10 -mt-20">
                     <CardImage  isSearchPage={true} cardData={cardData} currentCard={currentCard} />
                         <div className="flex items-center -mt-22">
                             {cardData && !cardData.error &&
