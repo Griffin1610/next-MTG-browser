@@ -15,7 +15,7 @@ export default function CardStats({ cardData } : { cardData: Card }) {
             B: "Black",
             W: "White",
         };
-        displayColors = [colorMap[displayColors[0]] || "N/A"];
+        displayColors = [colorMap[displayColors?.[0]] || "N/A"];
     }
 
     return (

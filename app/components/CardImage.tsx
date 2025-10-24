@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Card } from "@/app/types/card";
+import { imageUris } from "@/app/types/imageUris";
 
 type CardData = {
     total_cards: number;
@@ -12,9 +13,10 @@ export default function CardImage( {cardData, isSearchPage, currentCard} : { car
     const onMouseEnter = () => setIsHovering(true);
     const onMouseLeave = () => setIsHovering(false);
 
-    const imageSrc = isSearchPage
-        ? cardData?.data?.[currentCard]?.image_uris?.normal
-        : cardData?.data?.[currentCard]?.image_uris?.small
+    const card = cardData?.data?.[currentCard];
+    const imageSrc = card?.image_uris
+        ? (isSearchPage ? card.image_uris.normal : card.image_uris.small)
+        : (card?.card_faces?.[0]?.image_uris?.normal ?? null)
 
     return (
         <div
@@ -24,9 +26,9 @@ export default function CardImage( {cardData, isSearchPage, currentCard} : { car
             {cardData && 
                 <div>
                     {isSearchPage ? (
-                    <img src={imageSrc} alt={cardData.data?.[currentCard]?.name} style={{ transform: 'scale(0.6)' }}/>
+                    <img src={imageSrc ?? ""} alt={cardData.data?.[currentCard]?.name} style={{ transform: 'scale(0.6)' }}/>
                     ) : (
-                    <img src={imageSrc} alt={cardData.data?.[currentCard]?.name}/>
+                    <img src={imageSrc ?? ""} alt={cardData.data?.[currentCard]?.name}/>
                     )}
                 </div>
             }
