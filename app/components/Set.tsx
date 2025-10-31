@@ -84,7 +84,7 @@ export default function Set({ setCode }: {setCode: string}) {
                                     image_uris: card.image_uris!,
                                     prices: { usd: card.prices?.usd ?? "0" },
                                 }], 
-                                    total_cards: 1
+                                total_cards: 1
                             }}
                             currentCard={0} 
                         />

@@ -10,9 +10,9 @@ export default function SetDropdown({ onSelect } : { onSelect : (setCode : strin
         async function fetchSets() {
             const response = await fetch("/api/set");
             const data = await response.json();
-            const filtered = data.data.filter(
+            const filteredData = data.data.filter(
             (set: MTGSet) => set.set_type === "core" || set.set_type === "expansion");
-            setSets(filtered);
+            setSets(filteredData);
         }
         fetchSets();
     }, []);

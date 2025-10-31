@@ -2,7 +2,7 @@ import { Card } from "@/app/types/card";
 
 export default function CardStats({ cardData } : { cardData: Card }) {
     let displayColors = cardData.colors;
-
+    
     if (displayColors?.length > 1) {
         displayColors = ["Multicolor"];
     } else if (displayColors?.length === 0) {
