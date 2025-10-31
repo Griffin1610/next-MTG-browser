@@ -10,14 +10,13 @@ export async function GET(request: Request) {
 
     try {
         const response = await fetch(`https://api.scryfall.com/cards/search?q=${encodeURIComponent(name)}&unique=prints`);
-        console.log(response);
 
         if (!response.ok) {
             return NextResponse.json({ error: "card not found"}, { status: 400});
         }
 
-        const card = await response.json();
-        return NextResponse.json(card);
+        const suggestions = await response.json();
+        return NextResponse.json(suggestions);
     }
     catch (error) {
         return NextResponse.json({ error: "internal API error" }, { status: 500 })
