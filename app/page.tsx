@@ -3,8 +3,11 @@ import Link from "next/link";
 export default function Page() {
     return (
     <>
-        <div className="text-center mt-40 text-white">
-            <p className="font-serif text-5xl mt-25">Welcome to
+        <div className="text-center">
+            <img src="/mtg-logo-free-use.png" alt="MTG Logo" className="w-80 mx-auto mt-15"/>
+        </div>
+        <div className="text-center mt-10 text-white">
+            <p className="font-serif text-4xl mt-25">Welcome to
                 <span className="text-red-500 pr-0.5"> M</span>
                 <span className="text-green-500 pr-0.5">T</span>
                 <span className="text-blue-500">G </span> 
