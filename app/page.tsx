@@ -4,6 +4,7 @@ export default function Page() {
     return (
     <div className="mt-15">
         <div className="text-center pt-20 pb-12">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/mtg-logo-free-use.png" alt="MTG Logo" className="w-72 md:w-96 mx-auto drop-shadow-lg"/>
         </div>
 

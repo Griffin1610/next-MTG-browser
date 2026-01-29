@@ -22,7 +22,7 @@ export default function Set({ setCode }: {setCode: string}) {
                     setChosenSet(true);
                 }
             }
-            catch(error) {
+            catch {
                 console.error("issue retreiving card collection");
             }
             finally {

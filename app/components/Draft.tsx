@@ -22,7 +22,7 @@ export default function Draft({ setName }: { setName: string }) {
     const [isLoading, setIsLoading] = useState(false);
     const [allPacks, setAllPacks] = useState<Card[][][]>([]);
 
-    const generatePack = (set: any[]): Card[] => {
+    const generatePack = (set: Card[]): Card[] => {
         const pack: Card[] = [];
 
         // Separate cards by rarity and type
@@ -32,8 +32,8 @@ export default function Draft({ setName }: { setName: string }) {
         const basicLands = set.filter(c => c.type_line?.includes('Basic Land'));
 
         // Helper to pick random cards
-        const pickRandom = (cards: any[], count: number): any[] => {
-            const picked: any[] = [];
+        const pickRandom = (cards: Card[], count: number): Card[] => {
+            const picked: Card[] = [];
             const available = [...cards];
             for (let i = 0; i < count && available.length > 0; i++) {
                 const randomIndex = Math.floor(Math.random() * available.length);
@@ -94,7 +94,7 @@ export default function Draft({ setName }: { setName: string }) {
         })();
     }, [setName]);
 
-    const botPickCard = (pack: any[]): number => {
+    const botPickCard = (pack: Card[]): number => {
         // Separate cards by rarity
         const rares = pack.map((c, i) => ({ card: c, index: i })).filter(({ card }) => card.rarity === 'rare' || card.rarity === 'mythic');
         const uncommons = pack.map((c, i) => ({ card: c, index: i })).filter(({ card }) => card.rarity === 'uncommon');
@@ -151,7 +151,6 @@ export default function Draft({ setName }: { setName: string }) {
 
         const newPick = draftState.currentPick + 1;
         const isRoundComplete = newPick >= 15;
-        const isDraftComplete = isRoundComplete && draftState.currentRound >= 2;
 
         if (isRoundComplete) {
             const nextRound = draftState.currentRound + 1;

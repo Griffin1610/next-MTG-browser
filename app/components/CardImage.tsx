@@ -17,8 +17,10 @@ export default function CardImage( {cardData, isSearchPage, currentCard} : { car
             {cardData && 
                 <div>
                     {isSearchPage ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={imageSrc ?? ""} alt={cardData.data?.[currentCard]?.name} style={{ transform: 'scale(0.6)' }}/>
                     ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={imageSrc ?? ""} alt={cardData.data?.[currentCard]?.name}/>
                     )}
                 </div>

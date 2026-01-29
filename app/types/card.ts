@@ -9,6 +9,7 @@ export type Card = {
     card_faces?: { image_uris: { small: string , normal: string, large: string } }[];
     type_line?: string;
     set_name?: string;
+    rarity?: string;
     prices?: { usd: string };
     foil?: boolean;
     artist?: string;
