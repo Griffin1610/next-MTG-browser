@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
     <html lang="en">
-        <body className="bg-stone-900">
+        <body className="bg-stone-900 min-h-screen">
             <main>
                 <NavigationBar></NavigationBar>
                 {children}
