@@ -94,16 +94,24 @@ export default function SearchBar({ onSearch } : { onSearch: (q: string) => void
                         const value = e.target.value;
                         setUserQuery(value);
                         setSelectedIndex(-1);
-                        
+
+                        // Abort previous request if still in flight
                         if (abortControllerRef.current) {
                             abortControllerRef.current.abort();
                         }
-                        
-                        if(value.length > 1) {
+
+                        if(value.length > 0) {
                             setIsLoading(true);
 
                                 try {
-                                    const response = await fetch(`/api/searchSuggestion/?name=${encodeURIComponent(value)}`)
+                                    // Create new abort controller for this request
+                                    const controller = new AbortController();
+                                    abortControllerRef.current = controller;
+
+                                    const response = await fetch(
+                                        `/api/searchSuggestion/?name=${encodeURIComponent(value)}`,
+                                        { signal: controller.signal }
+                                    )
                                     const result = await response.json();
 
                                     if (!response.ok || result.error) {
@@ -112,7 +120,7 @@ export default function SearchBar({ onSearch } : { onSearch: (q: string) => void
                                         setIsLoading(false);
                                         return;
                                     }
-                                    
+
                                     const seenNames = new Set<string>();
                                     const uniqueCards: Card[] = [];
                                     const firstChar = value[0].toLowerCase();
@@ -126,14 +134,14 @@ export default function SearchBar({ onSearch } : { onSearch: (q: string) => void
                                     uniqueCards.sort((a, b) => {
                                         const aStartsWithChar = a.name.toLowerCase().startsWith(firstChar);
                                         const bStartsWithChar = b.name.toLowerCase().startsWith(firstChar);
-                                        
+
                                         if (aStartsWithChar && !bStartsWithChar) return -1;
                                         if (!aStartsWithChar && bStartsWithChar) return 1;
                                         return a.name.localeCompare(b.name);
                                     });
 
                                     const topCards = uniqueCards.slice(0, 5);
-                                    
+
                                     setSuggestions(topCards);
                                     setIsOpen(topCards.length > 0);
                                     setIsLoading(false);
