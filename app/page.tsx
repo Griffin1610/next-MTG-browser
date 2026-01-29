@@ -4,7 +4,7 @@ export default function Page() {
     return (
     <div className="mt-15">
         <div className="text-center pt-20 pb-12">
-            <img src="/mtg-logo.png" alt="MTG Logo" className="w-72 md:w-96 mx-auto drop-shadow-lg"/>
+            <img src="/mtg-logo-free-use.png" alt="MTG Logo" className="w-72 md:w-96 mx-auto drop-shadow-lg"/>
         </div>
 
         <div className="text-center text-white px-4 pb-20">
