@@ -19,10 +19,10 @@ export default function Page() {
 
         {chosenSet && (
             <>
-                <div className="mt-10 flex justify-center">
+                <div className="mt-8 flex justify-center">
                     <SetDropdown onSelect={setChosenSet} />
                 </div>
-                <div className="mt-15 flex flex-col items-center">
+                <div className="flex flex-col items-center">
                     <Draft setName={chosenSet} />
                 </div>
             </>

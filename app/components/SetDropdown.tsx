@@ -10,8 +10,13 @@ export default function SetDropdown({ onSelect } : { onSelect : (setCode : strin
         async function fetchSets() {
             const response = await fetch("/api/set");
             const data = await response.json();
+            const now = new Date();
             const filteredData = data.data.filter(
-            (set: MTGSet) => set.set_type === "core" || set.set_type === "expansion");
+            (set: MTGSet) => {
+                const isCorrectType = set.set_type === "core" || set.set_type === "expansion";
+                const isReleased = new Date(set.released_at) <= now;
+                return isCorrectType && isReleased;
+            });
             setSets(filteredData);
         }
         fetchSets();

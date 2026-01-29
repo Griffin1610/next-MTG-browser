@@ -7,10 +7,12 @@ export default function Set({ setCode }: {setCode: string}) {
     const [cards, setCards] = useState<setCards[]>([]);
     const [sortBy, setSortBy] = useState<string>("name");
     const [chosenSet, setChosenSet] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (!setCode) return;
         (async () => {
+            setIsLoading(true);
             try {
                 const response = await fetch(`/api/collection/?set=${setCode}`);
                 const data = await response.json();
@@ -22,6 +24,9 @@ export default function Set({ setCode }: {setCode: string}) {
             }
             catch(error) {
                 console.error("issue retreiving card collection");
+            }
+            finally {
+                setIsLoading(false);
             }
         })();
     }, [setCode]);
@@ -53,12 +58,17 @@ export default function Set({ setCode }: {setCode: string}) {
 
     return (
     <>
-    {chosenSet && (
-        <div className="flex justify-center mt-4">
-            <select 
-                value={sortBy} 
+    {isLoading && (
+        <div className="flex justify-center mt-10">
+            <p className="text-stone-300 text-lg">Loading cards...</p>
+        </div>
+    )}
+    {!isLoading && chosenSet && (
+        <div className="flex justify-center mt-6 mb-8">
+            <select
+                value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-stone-800 text-white px-4 py-2 rounded-lg"
+                className="bg-stone-800 border border-stone-700 text-stone-200 px-4 py-2 rounded-md transition-colors hover:bg-stone-750"
             >
                 <option value="name-asc">Name (A-Z)</option>
                 <option value="name-desc">Name (Z-A)</option>
@@ -71,28 +81,30 @@ export default function Set({ setCode }: {setCode: string}) {
             </select>
         </div>
     )}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 200px)", gap: "1rem", marginTop: "1rem", width: "100%", justifyContent: "center" }}>
+    {!isLoading && (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-6 px-4 pb-10 max-w-[1600px] mx-auto">
             {sortedCards.map((card) => (
                 card.image_uris ? (
-                    <div key={card.id}>
-                        <CardImage 
+                    <div key={card.id} className="flex flex-col items-center">
+                        <CardImage
                             isSearchPage={false}
                             cardData={{
                                 data: [{
-                                    ...card, 
-                                    colors: card.colors ?? [], 
+                                    ...card,
+                                    colors: card.colors ?? [],
                                     image_uris: card.image_uris!,
                                     prices: { usd: card.prices?.usd ?? "0" },
-                                }], 
+                                }],
                                 total_cards: 1
                             }}
-                            currentCard={0} 
+                            currentCard={0}
                         />
-                        <p className="text-white text-xs text-center">{card.name}</p>
+                        <p className="text-stone-300 text-sm text-center mt-2 px-2">{card.name}</p>
                     </div>
                 ) : null
             ))}
         </div>
+    )}
     </>
     )
 }

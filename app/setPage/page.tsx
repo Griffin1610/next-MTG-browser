@@ -9,7 +9,7 @@ export default function Page() {
     return (
         <>
             <div className="mt-20 flex flex-col items-center">
-                {!chosenSet && 
+                {!chosenSet &&
                     <p className="font-bold font-serif text-2xl text-white">Select a set to view cards</p>
                     }
             </div>
