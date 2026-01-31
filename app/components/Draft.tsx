@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import { Card } from "@/app/types/card";
 import CardImage from "./CardImage";
 
@@ -21,6 +22,37 @@ export default function Draft({ setName }: { setName: string }) {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [allPacks, setAllPacks] = useState<Card[][][]>([]);
+    const { data: session } = useSession();
+    const [deckName, setDeckName] = useState('');
+    const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+
+    const handleSaveDeck = async () => {
+        if (!session || saveStatus === 'saving') return;
+        setSaveStatus('saving');
+        try {
+            const res = await fetch('/api/decks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    deckName: deckName || `${setName} Draft - ${new Date().toLocaleDateString()}`,
+                    setName,
+                    cards: draftState.draftPool.map(card => ({
+                        id: card.id,
+                        name: card.name,
+                        image_uris: card.image_uris,
+                        rarity: card.rarity,
+                        colors: card.colors,
+                        type_line: card.type_line,
+                        cmc: card.cmc,
+                    })),
+                }),
+            });
+            if (res.ok) setSaveStatus('saved');
+            else setSaveStatus('error');
+        } catch {
+            setSaveStatus('error');
+        }
+    };
 
     const generatePack = (set: Card[]): Card[] => {
         const pack: Card[] = [];
@@ -197,6 +229,29 @@ export default function Draft({ setName }: { setName: string }) {
                     <h2 className="text-stone-200 font-serif text-2xl mb-2">Draft Complete!</h2>
                     <p className="text-stone-300 text-sm">Your draft pool ({(draftState.draftPool || []).length} cards)</p>
                 </div>
+
+                {session ? (
+                    <div className="flex items-center gap-3 mb-6">
+                        <input
+                            type="text"
+                            value={deckName}
+                            onChange={(e) => setDeckName(e.target.value)}
+                            placeholder={`${setName} Draft - ${new Date().toLocaleDateString()}`}
+                            className="bg-stone-800 border border-stone-600 rounded px-3 py-1.5 text-white text-sm w-64 placeholder-stone-500 focus:outline-none focus:border-stone-400"
+                        />
+                        <button
+                            onClick={handleSaveDeck}
+                            disabled={saveStatus === 'saving' || saveStatus === 'saved'}
+                            className="bg-violet-700 hover:bg-violet-600 disabled:bg-stone-600 text-white px-4 py-1.5 rounded text-sm transition-colors"
+                        >
+                            {saveStatus === 'idle' ? 'Save Deck' :
+                             saveStatus === 'saving' ? 'Saving...' :
+                             saveStatus === 'saved' ? 'Saved!' : 'Error - Retry'}
+                        </button>
+                    </div>
+                ) : (
+                    <p className="text-stone-500 text-sm mb-6">Log in to save your draft deck</p>
+                )}
 
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3 px-3 max-w-[1500px] mx-auto">
                     {(draftState.draftPool || []).map((card, index) => (
