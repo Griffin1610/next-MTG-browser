@@ -70,32 +70,36 @@ export default function Page() {
             {decks.length === 0 ? (
                 <p className="text-stone-400 text-center">No saved decks yet. Complete a draft and save it!</p>
             ) : (
-                <div className="space-y-4">
+                <div className="space-y-2">
                     {decks.map(deck => (
-                        <div key={deck._id} className="bg-stone-800 border border-stone-700 rounded-lg overflow-hidden">
+                        <div key={deck._id} className="overflow-hidden">
                             <div
-                                className="flex items-center justify-between p-4 cursor-pointer hover:bg-stone-750 transition-colors"
+                                className="flex items-center justify-between py-3 px-2 cursor-pointer group transition-colors border-b border-stone-800 hover:border-stone-600"
                                 onClick={() => setExpandedDeck(expandedDeck === deck._id ? null : deck._id)}
                             >
-                                <div>
-                                    <h3 className="text-white font-medium">{deck.deckName}</h3>
-                                    <p className="text-stone-400 text-sm">
-                                        {deck.setName} &middot; {deck.cards.length} cards &middot; {new Date(deck.savedAt).toLocaleDateString()}
+                                <div className="flex items-baseline gap-4">
+                                    <h3 className="text-stone-200 font-medium group-hover:text-white transition-colors">{deck.deckName}</h3>
+                                    <p className="text-stone-500 text-sm">
+                                        {deck.setName} · {deck.cards.length} cards · {new Date(deck.savedAt).toLocaleDateString()}
                                     </p>
                                 </div>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-4">
                                     <button
                                         onClick={(e) => { e.stopPropagation(); handleDelete(deck._id); }}
-                                        className="text-red-400 hover:text-red-300 text-sm"
+                                        className="text-stone-600 hover:text-red-400 text-sm transition-colors"
                                     >
                                         Delete
                                     </button>
-                                    <span className="text-stone-500">{expandedDeck === deck._id ? '▲' : '▼'}</span>
+                                    <span className="text-stone-600 text-xs transition-transform duration-200"
+                                        style={{ display: 'inline-block', transform: expandedDeck === deck._id ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                    >
+                                        ▼
+                                    </span>
                                 </div>
                             </div>
 
                             {expandedDeck === deck._id && (
-                                <div className="p-4 border-t border-stone-700">
+                                <div className="py-4 pl-2">
                                     <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3">
                                         {deck.cards.map((card, index) => (
                                             card.image_uris ? (
@@ -105,7 +109,7 @@ export default function Page() {
                                                         cardData={{ data: [card], total_cards: 1 }}
                                                         currentCard={0}
                                                     />
-                                                    <p className="text-stone-300 text-xs text-center mt-2">{card.name}</p>
+                                                    <p className="text-stone-400 text-xs text-center mt-2">{card.name}</p>
                                                 </div>
                                             ) : null
                                         ))}

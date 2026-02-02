@@ -21,21 +21,15 @@ export default function Page() {
                 Search thousands of Magic cards, check prices, browse complete sets, and practice your draft skills
             </p>
 
-            <div className="flex flex-wrap justify-center gap-10">
-                <Link href="/searchPage" className="group">
-                    <div className="bg-gradient-to-br from-stone-800 to-stone-850 border border-stone-600 px-8 py-6 min-w-[200px] transition-all hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-0.5">
-                        <p className="text-stone-100 group-hover:text-emerald-400 transition-colors font-medium">Find Card Prices</p>
-                    </div>
+            <div className="flex flex-wrap justify-center gap-12">
+                <Link href="/searchPage" className="group text-stone-300 text-lg font-medium tracking-wide transition-all hover:text-emerald-400 hover:shadow-emerald-500/20 hover:drop-shadow-[0_0_12px_rgba(52,211,153,0.3)] hover:-translate-y-0.5">
+                    Find Card Prices
                 </Link>
-                <Link href="/setPage" className="group">
-                    <div className="bg-gradient-to-br from-stone-800 to-stone-850 border border-stone-600 px-8 py-6 min-w-[200px] transition-all hover:border-sky-500/60 hover:shadow-lg hover:shadow-sky-500/10 hover:-translate-y-0.5">
-                        <p className="text-stone-100 group-hover:text-sky-400 transition-colors font-medium">View All Sets</p>
-                    </div>
+                <Link href="/setPage" className="group text-stone-300 text-lg font-medium tracking-wide transition-all hover:text-sky-400 hover:shadow-sky-500/20 hover:drop-shadow-[0_0_12px_rgba(56,189,248,0.3)] hover:-translate-y-0.5">
+                    View All Sets
                 </Link>
-                <Link href="/draftPage" className="group">
-                    <div className="bg-gradient-to-br from-stone-800 to-stone-850 border border-stone-600 px-8 py-6 min-w-[200px] transition-all hover:border-amber-500/60 hover:shadow-lg hover:shadow-amber-500/10 hover:-translate-y-0.5">
-                        <p className="text-stone-100 group-hover:text-amber-400 transition-colors font-medium">Simulate Drafts</p>
-                    </div>
+                <Link href="/draftPage" className="group text-stone-300 text-lg font-medium tracking-wide transition-all hover:text-amber-400 hover:shadow-amber-500/20 hover:drop-shadow-[0_0_12px_rgba(245,158,11,0.3)] hover:-translate-y-0.5">
+                    Simulate Drafts
                 </Link>
             </div>
         </div>
